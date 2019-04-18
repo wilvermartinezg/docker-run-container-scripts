@@ -2,18 +2,18 @@ mongodb(){
 	docker run -ti --rm --net=host -p 27017:27017 wilver/mongo:4.0
 }
 
-ionic4(){
+ionic(){
 	docker run -ti \
     --rm \
     --net=host \
     -e "TZ=America/Guatemala" \
-	--volume="$HOME/Documentos/docker/ionic/Sdk:/home/developer/android/sdk" \
+	--volume="$HOME/Documentos/dockerfiles/ionic/Sdk:/home/developer/android/sdk" \
 	--volume="$HOME/.android:/home/developer/.android" \
     --volume="$HOME/.gradle:/home/developer/.gradle" \
     --volume="$HOME/.npm:/home/developer/.npm" \
 	--volume="$HOME/projects:/home/developer/projects" \
     --volume="$HOME/.config:/home/developer/.config" \
-	wilver/ionic:4.0
+	wilver/ionic:3.0
 }
 
 jdk11(){
@@ -55,7 +55,23 @@ dbeaver(){
     "/home/developer/dbeaver/dbeaver"
 }
 
-node10(){
+webstorm(){
+    docker run -ti \
+    --rm \
+    --net=host \
+    --env="DISPLAY" \
+    -e "TZ=America/Guatemala" \
+    --volume="$HOME/Docker/containers-data/node10/.npm:/home/developer/.npm" \
+    --volume="$HOME/Docker/containers-data/node10/.node-gyp:/home/developer/.node-gyp" \
+    --volume="$HOME/projects:/home/developer/projects" \
+    --volume="$HOME/Applications:/home/developer/Applications" \
+    --volume="$HOME/Docker/containers-data/node10/.java:/home/developer/.java" \
+    --volume="$HOME/Docker/containers-data/node10/.WebStorm2019.1:/home/developer/.WebStorm2019.1" \
+    wilver/node:11 \
+    "./Applications/WebStorm-191.6183.63/bin/webstorm.sh"
+}
+
+node11(){
     docker run -ti \
     --rm \
     --net=host \
@@ -64,7 +80,23 @@ node10(){
     --volume="$HOME/.npm:/home/developer/.npm" \
     --volume="$HOME/.node-gyp:/home/developer/.node-gyp" \
     --volume="$HOME/projects:/home/developer/projects" \
-    wilver/node:10
+    --volume="$HOME/Applications:/home/developer/Applications" \
+    wilver/node:11
+}
+
+node10(){
+    docker run -ti \
+    --rm \
+    --net=host \
+    --env="DISPLAY" \
+    -e "TZ=America/Guatemala" \
+    --volume="$HOME/Docker/containers-data/node10/.npm:/home/developer/.npm" \
+    --volume="$HOME/Docker/containers-data/node10/.node-gyp:/home/developer/.node-gyp" \
+    --volume="$HOME/projects:/home/developer/projects" \
+    --volume="$HOME/Applications:/home/developer/Applications" \
+    --volume="$HOME/Docker/containers-data/node10/.java:/home/developer/.java" \
+    --volume="$HOME/Docker/containers-data/node10/.WebStorm2019.1:/home/developer/.WebStorm2019.1" \
+    wilver/node:10.1
 }
 
 psql(){
