@@ -61,14 +61,14 @@ webstorm(){
     --net=host \
     --env="DISPLAY" \
     -e "TZ=America/Guatemala" \
-    --volume="$HOME/Docker/containers-data/node10/.npm:/home/developer/.npm" \
-    --volume="$HOME/Docker/containers-data/node10/.node-gyp:/home/developer/.node-gyp" \
-    --volume="$HOME/projects:/home/developer/projects" \
+    --volume="$HOME/Docker/containers-data/node11/.npm:/home/developer/.npm" \
+    --volume="$HOME/Docker/containers-data/node11/.node-gyp:/home/developer/.node-gyp" \
+    --volume="$HOME/Projects:/home/developer/Projects" \
     --volume="$HOME/Applications:/home/developer/Applications" \
-    --volume="$HOME/Docker/containers-data/node10/.java:/home/developer/.java" \
-    --volume="$HOME/Docker/containers-data/node10/.WebStorm2019.1:/home/developer/.WebStorm2019.1" \
+    --volume="$HOME/Docker/containers-data/node11/.java:/home/developer/.java" \
+    --volume="$HOME/Docker/containers-data/node11/.WebStorm2019.1:/home/developer/.WebStorm2019.1" \
     wilver/node:11 \
-    "./Applications/WebStorm-191.6183.63/bin/webstorm.sh"
+    "./Applications/WebStorm-191.7479.14/bin/webstorm.sh"
 }
 
 node11(){
@@ -77,9 +77,10 @@ node11(){
     --net=host \
     --env="DISPLAY" \
     -e "TZ=America/Guatemala" \
-    --volume="$HOME/.npm:/home/developer/.npm" \
-    --volume="$HOME/.node-gyp:/home/developer/.node-gyp" \
-    --volume="$HOME/projects:/home/developer/projects" \
+    --volume="$HOME/Docker/containers-data/node11/.npm:/home/developer/.npm" \
+    --volume="$HOME/Docker/containers-data/node11/.node-gyp:/home/developer/.node-gyp" \
+    --volume="$HOME/Docker/containers-data/node11/.java:/home/developer/.java" \
+    --volume="$HOME/Projects:/home/developer/Projects" \
     --volume="$HOME/Applications:/home/developer/Applications" \
     wilver/node:11
 }
