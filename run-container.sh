@@ -32,12 +32,48 @@ jdk8(){
     docker run -ti \
     --rm \
     --net=host \
+    --env="DISPLAY" \
     -e "TZ=America/Guatemala" \
-    --volume="$HOME/.m2:/home/developer/.m2" \
-    --volume="$HOME/projects:/home/developer/projects" \
-    --volume="$HOME/.java:/home/developer/.java" \
-    --volume="$HOME/.sonar:/home/developer/.sonar" \
-    wilver/jdk:1.8.0_192
+    --volume="$HOME/Docker/containers-data/jdk8/.m2:/home/developer/.m2" \
+    --volume="$HOME/Docker/containers-data/jdk8/.java:/home/developer/.java" \
+    --volume="$HOME/Docker/containers-data/jdk8/.sonar:/home/developer/.sonar" \
+    --volume="$HOME/Projects:/home/developer/Projects" \
+    --volume="$HOME/Applications:/home/developer/Applications" \
+    wilver/jdk:8.0_212
+}
+
+intellij(){
+    docker run -ti \
+    --rm \
+    --net=host \
+    --env="DISPLAY" \
+    -e "TZ=America/Guatemala" \
+    --volume="$HOME/Docker/containers-data/jdk8/.m2:/home/developer/.m2" \
+    --volume="$HOME/Docker/containers-data/jdk8/.java:/home/developer/.java" \
+    --volume="$HOME/Docker/containers-data/jdk8/.sonar:/home/developer/.sonar" \
+    --volume="$HOME/Docker/containers-data/jdk8/.IdeaIC2019.1:/home/developer/.IdeaIC2019.1" \
+    --volume="$HOME/Applications:/home/developer/Applications" \
+    --volume="$HOME/Projects:/home/developer/Projects" \
+    wilver/jdk:8.0_212 \
+    "./Applications/idea-IC-191.7479.19/bin/idea.sh"
+}
+
+androidStudio(){
+    docker run -ti \
+    --rm \
+    --net=host \
+    --env="DISPLAY" \
+    -e "TZ=America/Guatemala" \
+    --volume="$HOME/Docker/containers-data/android-studio/Android:/home/developer/Android" \
+    --volume="$HOME/Docker/containers-data/android-studio/flutter:/home/developer/flutter" \
+    --volume="$HOME/Docker/containers-data/android-studio/.android:/home/developer/.android" \
+    --volume="$HOME/Docker/containers-data/android-studio/.java:/home/developer/.java" \
+    --volume="$HOME/Docker/containers-data/android-studio/.gradle:/home/developer/.gradle" \
+    --volume="$HOME/Docker/containers-data/android-studio/.AndroidStudio3.4:/home/developer/.AndroidStudio3.4" \
+    --volume="$HOME/Applications:/home/developer/Applications" \
+    --volume="$HOME/Projects:/home/developer/Projects" \
+    wilver/android-sdk:1.0 \
+    "./Applications/android-studio/bin/studio.sh"
 }
 
 dbeaver(){
@@ -47,11 +83,10 @@ dbeaver(){
     --env="DISPLAY" \
     -e "TZ=America/Guatemala" \
     --volume="$HOME/.Xauthority:/home/developer/.Xauthority:rw" \
-    --volume="$HOME/.m2:/home/developer/.m2" \
-    --volume="$HOME/.dbeaver4:/home/developer/.dbeaver4" \
-    --volume="$HOME/.dbeaver-drivers:/home/developer/.dbeaver-drivers" \
-    --volume="$HOME/Applications/dbeaver/:/home/developer/dbeaver" \
-    wilver/jrex64:1.8.0_192 \
+    --volume="$HOME/Docker/containers-data/dbeaver/.dbeaver4:/home/developer/.dbeaver4" \
+    --volume="$HOME/Docker/containers-data/dbeaver/.dbeaver-drivers:/home/developer/.dbeaver-drivers" \
+    --volume="$HOME/Applications/dbeaver:/home/developer/dbeaver" \
+    wilver/jre:8.0_212 \
     "/home/developer/dbeaver/dbeaver"
 }
 
@@ -78,6 +113,7 @@ node11(){
     --env="DISPLAY" \
     -e "TZ=America/Guatemala" \
     --volume="$HOME/Docker/containers-data/node11/.npm:/home/developer/.npm" \
+    --volume="$HOME/Docker/containers-data/node11/.config:/home/developer/.config" \
     --volume="$HOME/Docker/containers-data/node11/.node-gyp:/home/developer/.node-gyp" \
     --volume="$HOME/Docker/containers-data/node11/.java:/home/developer/.java" \
     --volume="$HOME/Projects:/home/developer/Projects" \
@@ -85,19 +121,16 @@ node11(){
     wilver/node:11
 }
 
-node10(){
+node8(){
     docker run -ti \
     --rm \
     --net=host \
     --env="DISPLAY" \
     -e "TZ=America/Guatemala" \
-    --volume="$HOME/Docker/containers-data/node10/.npm:/home/developer/.npm" \
-    --volume="$HOME/Docker/containers-data/node10/.node-gyp:/home/developer/.node-gyp" \
-    --volume="$HOME/projects:/home/developer/projects" \
-    --volume="$HOME/Applications:/home/developer/Applications" \
-    --volume="$HOME/Docker/containers-data/node10/.java:/home/developer/.java" \
-    --volume="$HOME/Docker/containers-data/node10/.WebStorm2019.1:/home/developer/.WebStorm2019.1" \
-    wilver/node:10.1
+    --volume="$HOME/Docker/containers-data/node8/.npm:/home/developer/.npm" \
+    --volume="$HOME/Docker/containers-data/node8/.node-gyp:/home/developer/.node-gyp" \
+    --volume="$HOME/Projects:/home/developer/Projects" \
+    wilver/node:8
 }
 
 psql(){
@@ -109,7 +142,7 @@ psql(){
     -e "TZ=America/Guatemala" \
     -v pgdata:/var/lib/postgresql \
     --volume="$HOME/.Xauthority:/home/developer/.Xauthority:rw" \
-    --volume="$HOME/projects/megapaca/java/pos/pos-jar:/home/developer/pos" \
+    --volume="$HOME/Projects/Megapaca/Java/pos/pos-jar:/home/developer/pos" \
     wilver/psql:9.5
 }
 
@@ -124,16 +157,6 @@ javaApps(){
     wilver/jrex64:1.8.0_192
 }
 
-cpos(){
-     docker run -ti \
-    --rm \
-    --net=host \
-    --env="DISPLAY" \
-    -e "TZ=America/Guatemala" \
-    --volume="$HOME/.Xauthority:/home/developer/.Xauthority:rw" \
-    --volume="$HOME/projects/chapindevs/chapin-pos/jars:/home/developer/pos" \
-    wilver/jrex86:1.8.0_192
-}
 
 "$@"
 
